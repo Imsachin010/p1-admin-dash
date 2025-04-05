@@ -130,7 +130,7 @@ export default function SignUp() {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid xs={12} sm={6}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -144,7 +144,7 @@ export default function SignUp() {
                   helperText={errors.firstName}
                 />
               </Grid>
-              <Grid xs={12} sm={6}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
@@ -158,7 +158,7 @@ export default function SignUp() {
                   helperText={errors.lastName}
                 />
               </Grid>
-              <Grid xs={12}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -172,7 +172,7 @@ export default function SignUp() {
                   helperText={errors.email}
                 />
               </Grid>
-              <Grid xs={12}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -187,7 +187,7 @@ export default function SignUp() {
                   helperText={errors.password}
                 />
               </Grid>
-              <Grid xs={12}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -211,7 +211,7 @@ export default function SignUp() {
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
-              <Grid>
+              <Grid item>
                 <Link
                   component="button"
                   variant="body2"

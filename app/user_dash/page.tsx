@@ -1,62 +1,28 @@
 "use client";
 
-import ProductCard from "../components/ProductCard";
 import Sidebar from "../components/Sidebar";
-
-// Sample product data
-const products = [
-  {
-    id: 1,
-    name: "Product 1",
-    price: 99.99,
-    description: "This is a sample product description for Product 1.",
-    imageUrl: "https://via.placeholder.com/300x200",
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    price: 149.99,
-    description: "This is a sample product description for Product 2.",
-    imageUrl: "https://via.placeholder.com/300x200",
-  },
-  {
-    id: 3,
-    name: "Product 3",
-    price: 199.99,
-    description: "This is a sample product description for Product 3.",
-    imageUrl: "https://via.placeholder.com/300x200",
-  },
-  {
-    id: 4,
-    name: "Product 4",
-    price: 299.99,
-    description: "This is a sample product description for Product 4.",
-    imageUrl: "https://via.placeholder.com/300x200",
-  },
-];
 
 export default function Dashboard() {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen">
       <Sidebar />
-      <main className="flex-1 p-8 bg-gray-100">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
-          <p className="text-gray-600">Welcome to your dashboard!</p>
+      <div className="flex-1 p-8">
+        <h1 className="text-3xl font-bold mb-6">Dashboard Overview</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-2">Total Products</h2>
+            <p className="text-3xl font-bold text-blue-600">150</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-2">Total Orders</h2>
+            <p className="text-3xl font-bold text-green-600">45</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-2">Total Revenue</h2>
+            <p className="text-3xl font-bold text-purple-600">$12,500</p>
+          </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              price={product.price}
-              description={product.description}
-              imageUrl={product.imageUrl}
-            />
-          ))}
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
