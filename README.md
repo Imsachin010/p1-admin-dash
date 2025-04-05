@@ -64,24 +64,6 @@ You can check out the deployed version here:
 
 ---
 
-## 📂 Project Structure
-
-```bash
-├── backend/               # Node.js backend
-├── frontend/              # Next.js frontend
-├── public/
-├── components/
-├── pages/
-├── styles/
-├── .env
-├── package.json
-└── README.md
-```
-
-*(Modify this structure if yours is different)*
-
----
-
 ## 📌 Notes
 
 - Admin dashboard is accessible only to authorized users with admin credentials.
