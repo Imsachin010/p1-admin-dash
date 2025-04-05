@@ -35,12 +35,21 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your authentication logic here
     try {
-      // For demo purposes, just redirect to dashboard
-      router.push("/dashboard");
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        router.push("/user_dash");
+      } else {
+        setError(data.message || "Invalid credentials. Please try again.");
+      }
     } catch (err) {
-      setError("Invalid credentials. Please try again.");
+      setError("An error occurred. Please try again.");
     }
   };
 

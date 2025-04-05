@@ -72,12 +72,36 @@ export default function SignUp() {
     return !Object.values(newErrors).some((error) => error !== "");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      // Handle successful form submission here
-      console.log("Form submitted:", formData);
-      // You can add your API call here
+      try {
+        const res = await fetch("/api/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          router.push("/user_dash");
+        } else {
+          setErrors((prev) => ({
+            ...prev,
+            email: data.message || "An error occurred during signup",
+          }));
+        }
+      } catch (error) {
+        setErrors((prev) => ({
+          ...prev,
+          email: "An error occurred. Please try again.",
+        }));
+      }
     }
   };
 
@@ -106,7 +130,7 @@ export default function SignUp() {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -120,7 +144,7 @@ export default function SignUp() {
                   helperText={errors.firstName}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
@@ -134,7 +158,7 @@ export default function SignUp() {
                   helperText={errors.lastName}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -148,7 +172,7 @@ export default function SignUp() {
                   helperText={errors.email}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -163,7 +187,7 @@ export default function SignUp() {
                   helperText={errors.password}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -187,7 +211,7 @@ export default function SignUp() {
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
-              <Grid item>
+              <Grid>
                 <Link
                   component="button"
                   variant="body2"
