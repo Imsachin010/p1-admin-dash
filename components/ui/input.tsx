@@ -6,6 +6,7 @@ import * as React from "react";
  * This interface is intentionally empty as it only extends React.InputHTMLAttributes
  * @see https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
 

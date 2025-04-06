@@ -41,6 +41,7 @@ export async function POST(request) {
     await db.collection('users').insertOne(newUser);
 
     // Remove password from response
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = newUser;
 
     return NextResponse.json(
