@@ -72,6 +72,17 @@ export default function AdminDashboard() {
     setNewProduct({ ...newProduct, [field]: e.target.value });
   };
 
+  const handleUserStatusChange = (
+    userId: string,
+    newStatus: User["status"]
+  ) => {
+    setUsers((prevUsers) =>
+      prevUsers.map((user) =>
+        user.id === userId ? { ...user, status: newStatus } : user
+      )
+    );
+  };
+
   return (
     <div className="container mx-auto p-6 min-h-screen bg-gray-50">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">Admin Dashboard</h1>
@@ -226,7 +237,7 @@ export default function AdminDashboard() {
                       </TableCell>
                       <TableCell>
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
+                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                             user.status === "active"
                               ? "bg-green-100 text-green-800"
                               : "bg-red-100 text-red-800"
@@ -234,6 +245,19 @@ export default function AdminDashboard() {
                         >
                           {user.status}
                         </span>
+                        <select
+                          value={user.status}
+                          onChange={(e) =>
+                            handleUserStatusChange(
+                              user.id,
+                              e.target.value as User["status"]
+                            )
+                          }
+                          className="ml-2 px-2 py-1 text-xs border rounded"
+                        >
+                          <option value="active">Active</option>
+                          <option value="inactive">Inactive</option>
+                        </select>
                       </TableCell>
                       <TableCell>
                         <Button

@@ -41,7 +41,7 @@ export async function POST(request) {
     await db.collection('users').insertOne(newUser);
 
     // Remove password from response
-    const { password: _, ...userWithoutPassword } = newUser;
+    const { password: userPassword, ...userWithoutPassword } = newUser;
 
     return NextResponse.json(
       { user: userWithoutPassword },

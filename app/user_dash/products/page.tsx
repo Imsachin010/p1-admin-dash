@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar";
 
@@ -91,11 +92,15 @@ export default function Products() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mockProducts.map((product) => (
             <div key={product.id} className="bg-white p-6 rounded-lg shadow-md">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-48 object-cover rounded mb-4"
-              />
+              <div className="relative w-full h-48 mb-4">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-cover rounded"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
               <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
               <p className="text-gray-600 mb-2 line-clamp-2">
                 {product.description}
@@ -133,11 +138,15 @@ export default function Products() {
                   ✕
                 </button>
               </div>
-              <img
-                src={selectedProduct.image}
-                alt={selectedProduct.name}
-                className="w-full h-64 object-cover rounded mb-4"
-              />
+              <div className="relative w-full h-64 mb-4">
+                <Image
+                  src={selectedProduct.image}
+                  alt={selectedProduct.name}
+                  fill
+                  className="object-cover rounded"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
               <p className="text-gray-600 mb-4">
                 {selectedProduct.description}
               </p>
