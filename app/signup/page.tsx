@@ -96,7 +96,8 @@ export default function SignUp() {
             email: data.message || "An error occurred during signup",
           }));
         }
-      } catch (error) {
+      } catch (error: unknown) {
+        console.error("Signup error:", error);
         setErrors((prev) => ({
           ...prev,
           email: "An error occurred. Please try again.",

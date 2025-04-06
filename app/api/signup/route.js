@@ -38,7 +38,7 @@ export async function POST(request) {
       updatedAt: new Date(),
     };
 
-    const result = await db.collection('users').insertOne(newUser);
+    await db.collection('users').insertOne(newUser);
 
     // Remove password from response
     const { password: _, ...userWithoutPassword } = newUser;
@@ -50,7 +50,7 @@ export async function POST(request) {
   } catch (error) {
     console.error('Signup error:', error);
     return NextResponse.json(
-      { message: 'An error occurred during signup' },
+      { message: 'Internal server error' },
       { status: 500 }
     );
   }

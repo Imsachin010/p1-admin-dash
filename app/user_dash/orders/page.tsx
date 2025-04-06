@@ -46,6 +46,14 @@ export default function Orders() {
     }
   };
 
+  const handleStatusChange = (orderId: string, newStatus: Order["status"]) => {
+    setOrders((prevOrders) =>
+      prevOrders.map((order) =>
+        order.id === orderId ? { ...order, status: newStatus } : order
+      )
+    );
+  };
+
   const filteredOrders = orders
     .filter(
       (order) => selectedStatus === "all" || order.status === selectedStatus
