@@ -48,7 +48,8 @@ export default function LoginPage() {
       } else {
         setError(data.message || "Invalid credentials. Please try again.");
       }
-    } catch (err) {
+    } catch (err: unknown) {
+      console.error("Login error:", err);
       setError("An error occurred. Please try again.");
     }
   };
@@ -161,7 +162,7 @@ export default function LoginPage() {
 
           <Box sx={{ mt: 3, textAlign: "center" }}>
             <Typography variant="body2" color="text.secondary">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Button
                 sx={{
                   textTransform: "none",
