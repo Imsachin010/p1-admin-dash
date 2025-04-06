@@ -138,6 +138,20 @@ export default function Orders() {
                     >
                       {order.status}
                     </span>
+                    <select
+                      value={order.status}
+                      onChange={(e) =>
+                        handleStatusChange(
+                          order.id,
+                          e.target.value as Order["status"]
+                        )
+                      }
+                      className="ml-2 px-2 py-1 text-xs border rounded"
+                    >
+                      <option value="Completed">Completed</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Cancelled">Cancelled</option>
+                    </select>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     ${order.total.toFixed(2)}
